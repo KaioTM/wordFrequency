@@ -83,14 +83,13 @@ public class ContaPalavras {
 			// (2.3) IMPORTANTE: neste loop pegamos cada palavra
 			// e atualizamos o mapa de frequências
 			// -------------------------------------------------------
-			if (listaNegra.lista.contains(minusculo)) {
-				break;
+			while (m.find()) {
+				String token = m.group().trim(); // pega um token
+				//token = token.replaceAll("\\s+$", "").replaceAll("^\\s+", "");
+			if (listaNegra.lista.contains(token)) {
 			} else {
-				while (m.find()) {
-					String token = m.group(); // pega um token
 					Integer freq = mapPalavras.get(token); // verifica se esse
 					// token já está no mapa
-
 					if (freq != null) { // se palavra existe, atualiza a frequencia
 						mapPalavras.put(token, freq + 1);
 					} else { // se palavra não existe, insiro com um novo id e freq=1.
@@ -114,9 +113,7 @@ public class ContaPalavras {
 		 */
 		Set keyset = mapPalavras.keySet();
 		Collection valores = mapPalavras.values();
-		String resultadoFinal = (keyset.toString() + valores.toString());
-		resultadoFinal = resultadoFinal.replaceAll("\\s", "").replaceAll("\n", "");
-		resultadoFinal = resultadoFinal.replaceAll("\\s", "").replaceAll("\n", "");
+		String resultadoFinal = (keyset.toString()+"\n" + valores.toString()).replace(" ", "");
 		TextoDAO.gravaArquivo("frequencia", resultadoFinal);
 		System.out.println(keyset.size() + "," + valores.size());
 

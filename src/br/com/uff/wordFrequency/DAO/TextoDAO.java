@@ -23,7 +23,7 @@ public class TextoDAO {
 	}
 
 	public static void gravaArquivo(String path, String conteudo) throws FileNotFoundException {
-		try(  PrintWriter out = new PrintWriter(path +".txt")  ){
+		try(  PrintWriter out = new PrintWriter("C:\\Users\\kaio.teixeira\\git\\wordFrequency\\src\\arquivo\\"+path +".txt")  ){
 		    out.println( conteudo );
 		}catch (Exception e2) {
 			System.out.println("Não foi possível gravar o arquivo.");
